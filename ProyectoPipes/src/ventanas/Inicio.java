@@ -5,17 +5,55 @@
  */
 package ventanas;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import java.applet.AudioClip;
+
 /**
  *
  * @author Uriot
  */
 public class Inicio extends javax.swing.JFrame {
 
+    public String user;
     /**
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();
+        
+        // diseño
+        setSize(800, 500);
+        setResizable(false);
+        setTitle("Inicio de Juego");
+        setLocationRelativeTo(null);
+        
+        
+        //Fondo
+        ImageIcon wallpaper = new ImageIcon("src/images/walpaperPrincipal.jpg");
+        Icon icono = new ImageIcon(wallpaper.getImage().getScaledInstance(jLabel1_Wallpaper.getWidth(),
+                jLabel1_Wallpaper.getHeight(), Image.SCALE_DEFAULT));
+        jLabel1_Wallpaper.setIcon(icono);
+        this.repaint();
+        
+        AudioClip sound;
+        sound = java.applet.Applet.newAudioClip(getClass().getResource("Sound/fondo.mp3"));
+        sound.play();
+        
+        /*//Logo
+        ImageIcon wallpaper_logo = new ImageIcon("src/images/Logo.png");
+        Icon icono_logo = new ImageIcon(wallpaper_logo.getImage().getScaledInstance(jLabel_Logo.getWidth(),
+                jLabel_Logo.getHeight(), Image.SCALE_DEFAULT));
+        jLabel_Logo.setIcon(icono_logo);
+        this.repaint();*/
+        
+    }
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("images/icon.png"));
+        return retValue;
     }
 
     /**
@@ -27,21 +65,57 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        txt_user = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel1_Wallpaper = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txt_user.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txt_user.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_user.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txt_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_userActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 190, -1));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("NickName");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setText("Iniciar");
+        jButton1.setBorder(null);
+        jButton1.setMaximumSize(new java.awt.Dimension(53, 21));
+        jButton1.setMinimumSize(new java.awt.Dimension(53, 21));
+        jButton1.setPreferredSize(new java.awt.Dimension(53, 21));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 100, 35));
+        getContentPane().add(jLabel1_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txt_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_userActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        user = txt_user.getText().trim();
+        dispose();
+        //new Analizador().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +153,9 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel1_Wallpaper;
+    private javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
 }
